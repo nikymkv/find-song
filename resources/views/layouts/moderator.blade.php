@@ -40,13 +40,13 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('home') . '#latest' }}">Новые песни</a>
+                            <a class="nav-link" href="{{ route('admin.statistics') }}">Статистика по категориям</a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link" href="{{ route('home') . '#newAuthors' }}">Новые исполнители</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('home') . '#chart' }}">Чарт</a>
+                            <a class="nav-link" href="{{ route('home') . '#chart' }}">Чарт</a> --}}
                         </li>
                     </ul>
 
@@ -59,12 +59,6 @@
                                     <a class="nav-link" href="{{ route('login') }}">Вход</a>
                                 </li>
                             @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">Регистрация</a>
-                                </li>
-                            @endif
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
@@ -73,28 +67,11 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    @if (!Auth::user()->is_moderator)
-                                        <a class="dropdown-item" href="{{ route('account.index') }}">
-                                            Личный кабинет
-                                        </a>
-                                        <a class="dropdown-item" href="{{ route('account.songs.favourites') }}">
-                                            Избранное
-                                        </a>
-                                        <a class="dropdown-item" href="{{ route('account.settings.index') }}">
-                                            Настройки
-                                        </a>
-                                        <a class="dropdown-item" href="{{ route('songs.create') }}">
-                                            Добавить песню
-                                        </a>
-                                    @else
-                                        <a class="dropdown-item" href="{{ route('admin.index') }}">
-                                            Панель модератора
-                                        </a>
-                                    @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                                     document.getElementById('logout-form').submit();">
+                                                         document.getElementById('logout-form').submit();">
                                         Выйти
                                     </a>
+
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                         class="d-none">
                                         @csrf
